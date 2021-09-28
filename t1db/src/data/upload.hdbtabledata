@@ -1,0 +1,24 @@
+{
+	"format_version" : 1,
+	"imports" : [{
+		"target_table" : "cv_data.cv",
+		"source_data" : {
+			"data_type" : "CSV",
+			"file_name" : "cv.csv",
+			"has_header" : true,
+			"dialect" : "HANA",
+			"type_config" : {
+				"delimiter" : ";"
+				}
+		},
+		"import_settings" : {
+			"include_filter" : [],
+			"import_columns" : [
+			"Characteristics", "Value"
+			]
+		},
+		"column_mapping" : {
+				"Characteristics" : 1, "Value" : 2
+		}
+	}]
+}

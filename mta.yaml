@@ -1,3 +1,19 @@
 ID: TASK1
 _schema-version: '2.1'
 version: 0.0.1
+
+modules:
+ - name: t1db
+   type: hdb
+   path: t1db
+   requires:
+    - name: hdi_t1db
+
+resources:
+ - name: hdi_t1db
+   parameters:
+      config:
+         schema: T1DB
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container

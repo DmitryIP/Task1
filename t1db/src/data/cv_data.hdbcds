@@ -1,0 +1,8 @@
+context cv_data {
+
+    /*@@layout{"layoutInfo":{"x":-317,"y":-212.5}}*/
+    entity cv {
+        Characteristics : String(50);
+        Value           : String(50);
+    };
+};

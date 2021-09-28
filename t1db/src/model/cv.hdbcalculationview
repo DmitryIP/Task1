@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="cv_data.cv">
+    <resourceUri>cv_data.cv</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="Characteristics"/>
+      <viewAttribute id="Value"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="First_Name" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (&quot;Characteristics&quot; = 'FirstName', &quot;Value&quot;, '')</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="Last_Name" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (&quot;Characteristics&quot; = 'LastName', &quot;Value&quot;, '')</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="Department" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (&quot;Characteristics&quot; = 'Department', &quot;Value&quot;, '')</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="Company" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (&quot;Characteristics&quot; = 'Company', &quot;Value&quot;, '')</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="Country" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (&quot;Characteristics&quot; = 'Country', &quot;Value&quot;, '')</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="org_code" datatype="NVARCHAR" length="13" expressionLanguage="COLUMN_ENGINE">
+        <formula>'1001'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="cv_data.cv"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="org_code" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="org_code"/>
+      <keyMapping columnObjectName="Projection_1" columnName="org_code"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Company" order="1" aggregationType="max" measureType="simple">
+      <descriptions defaultDescription="Company"/>
+      <measureMapping columnObjectName="Projection_1" columnName="Company"/>
+    </measure>
+    <measure id="First_Name" order="2" aggregationType="max" measureType="simple">
+      <descriptions defaultDescription="First_Name"/>
+      <measureMapping columnObjectName="Projection_1" columnName="First_Name"/>
+    </measure>
+    <measure id="Last_Name" order="3" aggregationType="max" measureType="simple">
+      <descriptions defaultDescription="Last_Name"/>
+      <measureMapping columnObjectName="Projection_1" columnName="Last_Name"/>
+    </measure>
+    <measure id="Department" order="4" aggregationType="max" measureType="simple">
+      <descriptions defaultDescription="Department"/>
+      <measureMapping columnObjectName="Projection_1" columnName="Department"/>
+    </measure>
+    <measure id="Country" order="5" aggregationType="max" engineAggregation="count" measureType="simple">
+      <descriptions defaultDescription="Country"/>
+      <measureMapping columnObjectName="Projection_1" columnName="Country"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="220"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
