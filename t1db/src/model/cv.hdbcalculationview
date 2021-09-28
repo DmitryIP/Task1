@@ -13,6 +13,8 @@
     <viewAttributes>
       <viewAttribute id="Characteristics"/>
       <viewAttribute id="Value"/>
+    
+      <viewAttribute id="org_code_1"/>
     </viewAttributes>
     <calculatedViewAttributes>
       <calculatedViewAttribute id="First_Name" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
@@ -29,19 +31,17 @@
       </calculatedViewAttribute>
       <calculatedViewAttribute id="Country" datatype="NVARCHAR" length="50" expressionLanguage="COLUMN_ENGINE">
         <formula>if (&quot;Characteristics&quot; = 'Country', &quot;Value&quot;, '')</formula>
-      </calculatedViewAttribute>
-      <calculatedViewAttribute id="org_code" datatype="NVARCHAR" length="13" expressionLanguage="COLUMN_ENGINE">
-        <formula>'1001'</formula>
-      </calculatedViewAttribute>
-    </calculatedViewAttributes>
-    <input node="cv_data.cv"/>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="cv_data.cv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="org_code_1" source="org_code"/>
+    </input>
   </calculationView>
 </calculationViews>
 <logicalModel id="Projection_1">
   <attributes>
-    <attribute id="org_code" order="6" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="org_code"/>
-      <keyMapping columnObjectName="Projection_1" columnName="org_code"/>
+    <attribute id="org_code_1" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="org_code_1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="org_code_1"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>

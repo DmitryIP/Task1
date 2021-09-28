@@ -1,24 +1,24 @@
 {
 	"format_version" : 1,
 	"imports" : [{
-		"target_table" : "cv_data.cv",
+		"target_table" : "cv2_data.cv2",
 		"source_data" : {
 			"data_type" : "CSV",
-			"file_name" : "cv.csv",
+			"file_name" : "cv2.csv",
 			"has_header" : true,
 			"dialect" : "HANA",
 			"type_config" : {
-				"delimiter" : ","
+				"delimiter" : ";"
 				}
 		},
 		"import_settings" : {
 			"include_filter" : [],
 			"import_columns" : [
-			"org_code","Characteristics", "Value"
+			"Characteristics", "Value"
 			]
 		},
 		"column_mapping" : {
-				"org_code": 1, "Characteristics" : 2, "Value" : 3
+				"Characteristics" : 1, "Value" : 2
 		}
 	}]
 }

@@ -1,0 +1,17 @@
+FUNCTION "cv2_add_num"( )
+       RETURNS TABLE (
+       	"row_num" INTEGER,
+       	"Characteristics" NVARCHAR(50),
+       	"Value" NVARCHAR(50)
+       ) 
+       LANGUAGE SQLSCRIPT 
+ AS 
+BEGIN 
+RETURN 
+select  
+ROW_NUMBER() OVER (PARTITION BY "Characteristics" ) AS "row_num",
+"Characteristics", 
+"Value"
+FROM "cv2_data.cv2"
+ORDER BY "row_num";
+END;

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cv2" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv2"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="cv2_add_num" type="TABLE_FUNCTION">
+    <resourceUri>cv2_add_num</resourceUri>
+  </DataSource>
+  <DataSource id="LastName$$$$cv2_add_num$$" type="TABLE_FUNCTION">
+    <resourceUri>cv2_add_num</resourceUri>
+  </DataSource>
+  <DataSource id="Department$$$$cv2_add_num$$" type="TABLE_FUNCTION">
+    <resourceUri>cv2_add_num</resourceUri>
+  </DataSource>
+  <DataSource id="Country$$$$cv2_add_num$$" type="TABLE_FUNCTION">
+    <resourceUri>cv2_add_num</resourceUri>
+  </DataSource>
+  <DataSource id="Company$$$$cv2_add_num$$" type="TABLE_FUNCTION">
+    <resourceUri>cv2_add_num</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FirstName" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="row_num"/>
+      <viewAttribute id="FirstName"/>
+      <viewAttribute id="Characteristics"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="cv2_add_num">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="Value"/>
+    </input>
+    <filter>&quot;Characteristics&quot; = 'FirstName'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="LastName" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="row_num"/>
+      <viewAttribute id="LastName"/>
+      <viewAttribute id="Characteristics"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="LastName$$$$cv2_add_num$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="Value"/>
+    </input>
+    <filter>&quot;Characteristics&quot; = 'LastName'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Department" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="row_num"/>
+      <viewAttribute id="Department"/>
+      <viewAttribute id="Characteristics"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="Department$$$$cv2_add_num$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Value"/>
+    </input>
+    <filter>&quot;Characteristics&quot; = 'Department'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Country" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="row_num"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="Characteristics"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="Country$$$$cv2_add_num$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Value"/>
+    </input>
+    <filter>&quot;Characteristics&quot; = 'Country'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Company" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="row_num"/>
+      <viewAttribute id="Company"/>
+      <viewAttribute id="Characteristics"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="undefined" node="Company$$$$cv2_add_num$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Company" source="Value"/>
+    </input>
+    <filter>&quot;Characteristics&quot; = 'Company'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Company" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="LastName"/>
+      <viewAttribute id="FirstName"/>
+      <viewAttribute id="row_num"/>
+      <viewAttribute hidden="true" id="JOIN$row_num$row_num"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="LastName">
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <input node="FirstName">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_num" source="row_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <joinAttribute name="JOIN$row_num$row_num"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Company" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="Department"/>
+      <viewAttribute id="LastName"/>
+      <viewAttribute id="FirstName"/>
+      <viewAttribute id="row_num"/>
+      <viewAttribute hidden="true" id="JOIN$row_num$row_num"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Department">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <input node="Join_1_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_num" source="row_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <joinAttribute name="JOIN$row_num$row_num"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_3" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Company" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="Department"/>
+      <viewAttribute id="LastName"/>
+      <viewAttribute id="FirstName"/>
+      <viewAttribute id="row_num"/>
+      <viewAttribute hidden="true" id="JOIN$row_num$row_num"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Country">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <input node="Join_1_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_num" source="row_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <joinAttribute name="JOIN$row_num$row_num"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_4" cardinality="C1_1" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Company" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="Department"/>
+      <viewAttribute id="LastName"/>
+      <viewAttribute id="FirstName"/>
+      <viewAttribute id="row_num"/>
+      <viewAttribute id="Company"/>
+      <viewAttribute hidden="true" id="JOIN$row_num$row_num"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Company">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Company" source="Company"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <input node="Join_1_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LastName" source="LastName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FirstName" source="FirstName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="row_num" source="row_num"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$row_num$row_num" source="row_num"/>
+    </input>
+    <joinAttribute name="JOIN$row_num$row_num"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1_4">
+  <attributes>
+    <attribute id="FirstName" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Value"/>
+      <keyMapping columnObjectName="Join_1_4" columnName="FirstName"/>
+    </attribute>
+    <attribute id="LastName" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Value"/>
+      <keyMapping columnObjectName="Join_1_4" columnName="LastName"/>
+    </attribute>
+    <attribute id="Department" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Value"/>
+      <keyMapping columnObjectName="Join_1_4" columnName="Department"/>
+    </attribute>
+    <attribute id="Company" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Value"/>
+      <keyMapping columnObjectName="Join_1_4" columnName="Company"/>
+    </attribute>
+    <attribute id="Country" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Value"/>
+      <keyMapping columnObjectName="Join_1_4" columnName="Country"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="FirstName" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="361"/>
+      <rectangleSize height="30" width="99"/>
+    </shape>
+    <shape expanded="true" modelObjectName="LastName" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="215" y="361"/>
+      <rectangleSize width="115"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Department" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="344" y="361"/>
+      <rectangleSize width="120"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Country" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="617" y="361"/>
+      <rectangleSize width="118"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Company" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="478" y="361"/>
+      <rectangleSize width="126"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="181"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Company" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="158.74072265625"/>
+    </shape>
+    <shape modelObjectName="Country" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="158.74072265625"/>
+    </shape>
+    <shape modelObjectName="Department" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="158.74072265625"/>
+    </shape>
+    <shape modelObjectName="LastName" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="920" y="30"/>
+      <rectangleSize width="158.74072265625"/>
+    </shape>
+    <shape modelObjectName="FirstName" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="1220" y="30"/>
+      <rectangleSize width="158.74072265625"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
